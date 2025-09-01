@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bam-router"
+version = "0.1.0"
+description = "BAM Smart Routing Client"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [{ name = "Giovanni Mazzeo" }]
+dependencies = [
+  "aiohttp>=3.9",
+  "typer>=0.12",
+  "base58>=2.1"
+]
+
+[project.optional-dependencies]
+test = [
+  "pytest>=7.0",
+  "pytest-asyncio>=0.21",
+  "pytest-cov>=4.0",
+  "aioresponses>=0.7.0",
+  "solana>=0.36.0",
+  "solders>=0.26.0",
+  "pytest-mock>=3.14.0",
+  "pytest-xdist>=3.0.0"
+]
+dev = [
+  "pytest>=7.0",
+  "pytest-asyncio>=0.21",
+  "pytest-cov>=4.0",
+  "aioresponses>=0.7.0",
+  "pylint>=2.17.0",
+  "black>=23.0",
+  "isort>=5.12.0",
+  "mypy>=1.0.0",
+  "solana>=0.36.0",
+  "solders>=0.26.0",
+  "pytest-mock>=3.14.0",
+  "pytest-xdist>=3.0.0"
+]
+
+[project.scripts]
+bam-router = "bam_router.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+asyncio_mode = "auto"
+addopts = "--cov=bam_router --cov-report=html --cov-report=term-missing"
+markers = [
+    "unit: marks tests as unit tests",
+    "integration: marks tests as integration tests",
+    "error: marks tests as error condition tests",
+    "slow: marks tests as slow running tests"
+]

@@ -1,0 +1,49 @@
+[MASTER]
+# Use multiple processes to speed up Pylint
+jobs=0
+
+# Python code to execute before analysis
+init-hook='import sys; sys.path.append(".")'
+
+[MESSAGES CONTROL]
+# Disable some warnings that are too strict for this project
+disable=C0111,  # missing-docstring
+        C0103,  # invalid-name
+        R0903,  # too-few-public-methods
+        R0913,  # too-many-arguments
+        W0621,  # redefined-outer-name
+        W0703,  # broad-except
+        W0612,  # unused-variable
+        W0611,  # unused-import
+
+[REPORTS]
+# Set the output format
+output-format=text
+
+# Include a brief explanation of each error
+msg-template={path}:{line}: [{msg_id}({symbol}), {obj}] {msg}
+
+# Don't show the score
+score=no
+
+[BASIC]
+# Regular expression which should only match function or class names
+good-names=i,j,k,ex,Run,_,id
+
+[FORMAT]
+# Maximum number of characters on a single line
+max-line-length=100
+
+# Maximum number of lines in a module
+max-module-lines=1000
+
+[SIMILARITIES]
+# Minimum lines number of a similarity
+min-similarity-lines=4
+
+# Ignore imports when computing similarities
+ignore-imports=yes
+
+[MISCELLANEOUS]
+# List of note tags to take into consideration
+notes=

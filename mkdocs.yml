@@ -1,0 +1,12 @@
+site_name: BAM Smart Routing Client
+theme:
+  name: material
+nav:
+  - Home: index.md
+  - Quickstart: quickstart.md
+  - API: api.md
+plugins:
+  - search
+markdown_extensions:
+  - admonition
+  - codehilite

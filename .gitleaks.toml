@@ -1,0 +1,65 @@
+# Gitleaks configuration for BAM Smart Routing Client
+# This file defines what secrets and sensitive information to scan for
+
+[global]
+# Scan all files by default
+allowlist = [
+    # Allow common test files
+    { description = "Test files", path = "tests/.*" },
+    # Allow documentation
+    { description = "Documentation", path = "docs/.*" },
+    # Allow example files
+    { description = "Example files", path = "examples/.*" },
+    # Allow configuration files that might contain false positives
+    { description = "Configuration files", path = ".*\\.(toml|yaml|yml|json|md)$" },
+]
+
+# Define custom rules for DeFi and blockchain specific patterns
+[[rules]]
+id = "blockchain-private-key"
+description = "Blockchain private key"
+regex = '''(?i)(private[_-]?key|secret[_-]?key|mnemonic|seed[_-]?phrase)[\s]*[=:][\s]*["']?[a-zA-Z0-9]{64}["']?'''
+tags = ["key", "blockchain", "crypto"]
+
+[[rules]]
+id = "ethereum-address"
+description = "Ethereum address"
+regex = '''0x[a-fA-F0-9]{40}'''
+tags = ["ethereum", "address"]
+
+[[rules]]
+id = "api-key-pattern"
+description = "API key pattern"
+regex = '''(?i)(api[_-]?key|access[_-]?key|secret[_-]?key)[\s]*[=:][\s]*["']?[a-zA-Z0-9]{32,64}["']?'''
+tags = ["key", "api"]
+
+[[rules]]
+id = "database-connection-string"
+description = "Database connection string"
+regex = '''(?i)(mongodb|postgresql|mysql|redis)://[a-zA-Z0-9:._-]+@[a-zA-Z0-9.-]+:[0-9]+/[a-zA-Z0-9._-]+'''
+tags = ["database", "connection"]
+
+[[rules]]
+id = "aws-credentials"
+description = "AWS credentials"
+regex = '''(?i)(aws_access_key_id|aws_secret_access_key)[\s]*[=:][\s]*["']?[A-Z0-9]{20}["']?'''
+tags = ["aws", "credentials"]
+
+[[rules]]
+id = "jwt-token"
+description = "JWT token"
+regex = '''eyJ[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*'''
+tags = ["jwt", "token"]
+
+# Include standard Gitleaks rules
+[[rules]]
+id = "generic-api-key"
+description = "Generic API Key"
+regex = '''(?i)(api[_-]?key|apikey|secret)[\s]*[=:][\s]*["']?[a-zA-Z0-9]{8,64}["']?'''
+tags = ["key", "api"]
+
+[[rules]]
+id = "password-in-url"
+description = "Password in URL"
+regex = '''[a-zA-Z]{3,10}://[^/\\s:@]*?:[^/\\s:@]*?@[^/\\s:@]*'''
+tags = ["password", "url"]
