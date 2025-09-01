@@ -5,11 +5,11 @@ This is a simple Python client for BAM (Blockspace Assembly Marketplace) smart r
 ## Features
 
 - **Region Selection**: Automatically selects the fastest region based on latency
-- **Transaction Submission**: Submit signed transactions to Jito Block Engine endpoints
+- **Transaction Submission**: Submit signed transactions to the selected endpoint
 - **CLI Interface**: Command-line interface for basic operations
 
 ## Installation
-
+ 
 ```bash
 pip install -e .
 ```
