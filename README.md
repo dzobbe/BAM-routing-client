@@ -1,6 +1,6 @@
 # BAM Routing Client
 
-This is a simple Python client for BAM (Blockspace Assembly Marketplace) smart routing. 
+This is a simple Python client for BAM (Block Assembly Marketplace) smart routing. 
 
 ## Features
 
